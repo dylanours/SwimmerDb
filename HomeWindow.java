@@ -633,7 +633,19 @@ public class HomeWindow extends JFrame {
 			updateTeam.setString( 7, inputTeam);
 			updateTeam.executeUpdate();
 			break;
-			
+		case "meet":
+            String updateMeetStr = "INSERT INTO `Meet` (`Name`,`DateHeld`) VALUES (?, ?)";
+            PreparedStatement updateMeet = connect.prepareStatement(updateMeetStr);
+            String inputMeet = JOptionPane.showInputDialog("Name:");
+            updateMeet.setString(1, inputMeet);
+            inputMeet = JOptionPane.showInputDialog("DateHeld (Year/Month/Day):");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            java.util.Date jUtilDate = null;
+            jUtilDate = df.parse(inputMeet);
+            java.sql.Date dateSQL = new java.sql.Date(jUtilDate.getTime());
+            updateMeet.setDate(2, dateSQL);
+            updateMeet.executeUpdate();
+            break;
 		}
 	}
 	private void delete(Connection connect, String type) throws SQLException{
