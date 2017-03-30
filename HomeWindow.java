@@ -357,10 +357,29 @@ public class HomeWindow extends JFrame {
             // JOptionPane.showMessageDialog(null, str);
             break;
         case "record":
-            String updateRecordStr = "INSERT INTO `Records` (`EventId`, `SwimmerId`, `Time`, `SanctionNumber`) VALUES ('10','9', '50','1')";
+            String updateRecordStr = "INSERT INTO `Records` (`EventId`, `SwimmerId`, `Time`, `SanctionNumber`) VALUES (?,?,?,?)";
             PreparedStatement updateRec = connect.prepareStatement(updateRecordStr);
-            String inputRec = JOptionPane.showInputDialog("*FirstName:");
+            String inputRec = null;
+            while (inputRec == null)
+            	inputRec = JOptionPane.showInputDialog("*EventId:");
+            str = str + inputRec + ", ";
             updateRec.setString(1, inputRec);
+            inputRec=null;
+            while (inputRec == null)
+            	inputRec = JOptionPane.showInputDialog("*SwimmerId:");
+            str = str + inputRec + ", ";
+            updateRec.setString(2, inputRec);
+            inputRec=null;
+            while(inputRec == null)
+            	inputRec = JOptionPane.showInputDialog("*Time");
+            str = str + inputRec + ", ";
+            updateRec.setString(3, inputRec);
+            inputRec=null;
+            while(inputRec == null)
+            	inputRec = JOptionPane.showInputDialog("*SanctionNumber");
+            str = str + inputRec + ", ";
+            updateRec.setString(4, inputRec);
+            updateRec.executeUpdate();
             break;
         case "team":
             String updateTeamStr = "INSERT INTO `Team` (`HeadCoach`,`TeamName`,`PoolStreet`,`PoolNumber`,`PoolCity`,`PoolState`,`PoolCountry`) VALUES (?, ?, ?, ?, ?, ?,?)";
