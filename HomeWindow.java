@@ -633,6 +633,7 @@ public class HomeWindow extends JFrame {
 			updateTeam.setString( 7, inputTeam);
 			updateTeam.executeUpdate();
 			break;
+			
 		}
 	}
 	private void delete(Connection connect, String type) throws SQLException{
