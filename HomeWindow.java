@@ -1,4 +1,3 @@
-package dBDebug;
 import java.awt.BorderLayout;
 
 import java.awt.EventQueue;
